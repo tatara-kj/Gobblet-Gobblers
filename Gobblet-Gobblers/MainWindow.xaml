@@ -1,0 +1,97 @@
+﻿<Window x:Class="Pozeracze.MainWindow"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+       Title="Pożeracze" Height="450" Width="800" Background="#464886" FontFamily="Lato">
+
+
+
+    <Window.Resources>
+
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#7CC6FE"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Margin" Value="20"/>
+            <Setter Property="Height" Value="50"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="BorderBrush" Value="#08090A"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="#7CC6FE" 
+                            BorderBrush="#08090A" 
+                            BorderThickness="2" 
+                            CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                          VerticalAlignment="Center"
+                                          Content="{TemplateBinding Content}" 
+                                          Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="TextBoxStyle" TargetType="TextBox">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="0"/>
+        </Style>
+
+        <Style x:Key="LabelStyle" TargetType="Label">
+
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#F4FAFF"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+    </Window.Resources>
+
+
+    <DockPanel>
+        <Grid Width="801" x:Name="menu">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF5DFDCB"/>
+                    <GradientStop Color="#FF32FF51" Offset="0"/>
+                    <GradientStop Color="#FF464886" Offset="0"/>
+                    <GradientStop Color="#FF7CC6FE" Offset="0.893"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Grid.Effect>
+                <DropShadowEffect/>
+            </Grid.Effect>
+
+            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center">
+                <Label Content="Pożeracze the game" Style="{StaticResource LabelStyle}" FontSize="36"/>
+                <Label Content="Wybierz rozmiar planszy (np. 3, 4, 5)" Style="{StaticResource LabelStyle}"/>
+                <TextBox x:Name="PoleRozmiar" Style="{StaticResource TextBoxStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Button Content="Rozpocznij Grę" Style="{StaticResource ButtonStyle}" Click="PrzyciskStart_Click" RenderTransformOrigin="0.485,1.18" Background="#FF0986E6">
+                    <Button.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="#FF9C6F6F" Offset="1"/>
+                            <GradientStop Color="#FF463131" Offset="0.763"/>
+                        </LinearGradientBrush>
+                    </Button.BorderBrush>
+                </Button>
+            </StackPanel>
+            <Label Content="Gracz1: "  BorderBrush="black"  FontSize="25px" HorizontalAlignment="Left" Margin="64,290,0,0" VerticalAlignment="Top" Style="{StaticResource LabelStyle}"/>
+            <Label Content="PODAJ NAZWE I KOLOR GRACZY"   BorderBrush="black" FontSize="25px" Margin="0,262,0,0" VerticalAlignment="Top" Width="412" Style="{StaticResource LabelStyle}"/>
+            <Label Content="Gracz2: " FontSize="25px"   BorderBrush="black" HorizontalAlignment="Left" Margin="628,290,0,0" VerticalAlignment="Top" Style="{StaticResource LabelStyle}"/>
+
+        </Grid>
+
+
+        <Grid x:Name="Plansza" Margin="10"/>
+    </DockPanel>
+</Window>
