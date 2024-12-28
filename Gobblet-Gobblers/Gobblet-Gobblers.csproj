@@ -9,4 +9,18 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="miecz 2.png" />
+    <None Remove="pionki\miecz 2.png" />
+    <None Remove="pionki\miecz 3.png" />
+    <None Remove="pionki\obraz 1.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="miecz 2.png" />
+    <Resource Include="pionki\miecz 2.png" />
+    <Resource Include="pionki\miecz 3.png" />
+    <Resource Include="pionki\obraz 1.png" />
+  </ItemGroup>
+
 </Project>
