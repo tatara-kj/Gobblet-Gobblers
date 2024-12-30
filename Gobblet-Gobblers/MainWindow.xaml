@@ -87,20 +87,10 @@
                 <DropShadowEffect/>
             </Grid.Effect>
 
-            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Margin="40">
-                <Label Content="GOBBLET GOBBLERS" Style="{StaticResource LabelStyle}" FontSize="36" Margin="20"/>
-                <Label Content="sword edition" Style="{StaticResource LabelStyle}" FontSize="30" RenderTransformOrigin="0.5,0.5">
-                    <Label.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform/>
-                            <SkewTransform/>
-                            <RotateTransform Angle="3.036"/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </Label.RenderTransform>
-                </Label>
-                <Label Content="Wybierz rozmiar planszy (np. 3, 4, 5)" Style="{StaticResource LabelStyle}" Margin="20"/>
-                <TextBox x:Name="PoleRozmiar" Style="{StaticResource TextBoxStyle}"/>
+            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center">
+                <Label Content="Pożeracze the game" Style="{StaticResource LabelStyle}" FontSize="36"/>
+                <Label Content="Wybierz rozmiar planszy (np. 3, 4, 5)" Style="{StaticResource LabelStyle}"/>
+                <TextBox x:Name="PoleRozmiar" Style="{StaticResource TextBoxStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </StackPanel>
 
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -114,77 +104,10 @@
                     </Button.BorderBrush>
                 </Button>
             </StackPanel>
+            <Label Content="Gracz1: "  BorderBrush="black"  FontSize="25px" HorizontalAlignment="Left" Margin="64,290,0,0" VerticalAlignment="Top" Style="{StaticResource LabelStyle}"/>
+            <Label Content="PODAJ NAZWE I KOLOR GRACZY"   BorderBrush="black" FontSize="25px" Margin="0,262,0,0" VerticalAlignment="Top" Width="412" Style="{StaticResource LabelStyle}"/>
+            <Label Content="Gracz2: " FontSize="25px"   BorderBrush="black" HorizontalAlignment="Left" Margin="628,290,0,0" VerticalAlignment="Top" Style="{StaticResource LabelStyle}"/>
 
-            <Label Content="Gracz1: " BorderBrush="black" FontSize="50px" HorizontalAlignment="Left" Margin="216,592,0,0" VerticalAlignment="Top" Style="{StaticResource LabelStyle}"/>
-            <TextBox x:Name="gracz1" Style="{StaticResource TextBoxStyle}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="44,729,0,0" Width="240"/>
-            <Label Content="PODAJ NAZWE I KOLOR GRACZY" BorderBrush="black" FontSize="50px" Margin="0,517,0,0" VerticalAlignment="Top" Width="800" Style="{StaticResource LabelStyle}"/>
-            <Label Content="Gracz2: " FontSize="50px" BorderBrush="black" HorizontalAlignment="Left" Margin="1114,592,0,0" VerticalAlignment="Top" Style="{StaticResource LabelStyle}"/>
-            <TextBox x:Name="gracz1_Kopiuj1" Style="{StaticResource TextBoxStyle}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="911,729,0,0" Width="240"/>
-            <Label Content="nazwa" BorderBrush="black" FontSize="35px" HorizontalAlignment="Left" Margin="103,667,0,0" VerticalAlignment="Top" Style="{StaticResource LabelStyle}" Height="57" Width="122"/>
-            <Label Content="kolor" BorderBrush="black" FontSize="35px" HorizontalAlignment="Left" Margin="399,667,0,0" VerticalAlignment="Top" Style="{StaticResource LabelStyle}" Height="57" Width="122"/>
-            <Label Content="nazwa" BorderBrush="black" FontSize="35px" HorizontalAlignment="Left" Margin="970,667,0,0" VerticalAlignment="Top" Style="{StaticResource LabelStyle}" Height="57" Width="122"/>
-            <Label Content="kolor" BorderBrush="black" FontSize="35px" HorizontalAlignment="Left" Margin="1331,667,0,0" VerticalAlignment="Top" Style="{StaticResource LabelStyle}" Height="57" Width="122"/>
-
-            
-            <ComboBox x:Name="ColorComboBox" Style="{StaticResource ComboBoxStyle}" Margin="334,729,1013,74" Background="White" SelectionChanged="ColorComboBox_SelectionChanged">
-                <ComboBoxItem Content="Czerwony" Background="Red"/>
-                <ComboBoxItem Content="Zielony" Background="Green"/>
-                <ComboBoxItem Content="Niebieski" Background="Blue"/>
-
-            </ComboBox>
-            <ComboBox x:Name="ColorComboBox_Kopiuj" Style="{StaticResource ComboBoxStyle}" Margin="1266,729,81,74" SelectionChanged="ColorComboBox_SelectionChanged">
-                <ComboBoxItem Content="Czerwony" Background="Red"/>
-                <ComboBoxItem Content="Zielony" Background="Green"/>
-                <ComboBoxItem Content="Niebieski" Background="Blue"/>
-
-            </ComboBox>
-            <Image HorizontalAlignment="Left" Height="74" Margin="865,115,0,0" VerticalAlignment="Top" Width="78" Source="/miecz 2.png"/>
-        </Grid>
-        <Grid Width="1599" x:Name="gra" Visibility="Visible">
-            <Grid x:Name="Plansza" Width="650" Height="650" Margin="0,169,0,64" HorizontalAlignment="Center" Background="Transparent"/>
-
-
-            <Button x:Name="gracz1_przycisk1" Margin="117,594,1250,88" Background="Transparent" BorderBrush="Aqua" BorderThickness="10" Click="mieczGracz1_click">
-                <Button.Content>
-                    <Image Source="pionki/miecz 3.png" Stretch="Uniform" Width="200" />
-                </Button.Content>
-            </Button>
-
-            <Button x:Name="gracz1_przycisk2" Click="mieczGracz1_click" Margin="134,390,1267,343" Background="Transparent" BorderBrush="Aqua" BorderThickness="10">
-                <Button.Content>
-                    <Image Source="pionki/miecz 2.png" Stretch="Uniform" Height="122" Width="165" />
-                </Button.Content>
-            </Button>
-
-            <Button Click="mieczGracz1_click" x:Name="gracz1_przycisk3" Margin="154,215,1287,548" Background="Transparent" BorderBrush="Aqua" BorderThickness="10">
-                <Image Source="/pionki/obraz 1.png" Stretch="Uniform" Height="110" Width="141" />
-            </Button>
-
-
-
-            <Button Click="mieczGracz2_click" x:Name="gracz2_przycisk1" Margin="1292,215,149,548" Background="Transparent" BorderBrush="Aqua" BorderThickness="10">
-                <Image Source="/pionki/obraz 1.png" Stretch="Uniform" Height="110" Width="141" RenderTransformOrigin="0.483,0.298" />
-            </Button>
-
-            <Button Click="mieczGracz2_click"  x:Name="gracz2_przycisk2"  Margin="1272,390,129,343" Background="Transparent" BorderBrush="Aqua" BorderThickness="10">
-                <Image Source="/pionki/miecz 2.png" Stretch="Uniform" Height="122" Width="165" />
-            </Button>
-
-            <Button Click="mieczGracz2_click" x:Name="gracz2_przycisk3"  Margin="1255,594,112,88" Background="Transparent" BorderBrush="Aqua" BorderThickness="10">
-                <Image Source="/pionki/miecz 3.png" Stretch="Uniform" Width="200" />
-            </Button>
-
-            <Label x:Name="imie1" Content="Label" FontSize="50"  Foreground="White" HorizontalAlignment="Left" Margin="117,67,0,0" VerticalAlignment="Top" Height="80" Width="232" FontWeight="Bold" Background="Transparent">
-                <Label.Effect>
-                    <DropShadowEffect/>
-                </Label.Effect>
-            </Label>
-            <Label x:Name="imie2" Content="Label" FontSize="50"  Foreground="White" HorizontalAlignment="Left" Margin="1255,67,0,0" VerticalAlignment="Top" Height="80" Width="232" FontWeight="Bold" Background="Transparent">
-                <Label.Effect>
-                    <DropShadowEffect/>
-                </Label.Effect>
-            </Label>
-            <Label x:Name="rundaLabel" FontSize="50" HorizontalAlignment="Center" Margin="0,67,0,0" VerticalAlignment="Top" Height="97" Width="544" Background="Transparent" FontFamily="Segoe Print"/>
         </Grid>
 
 
