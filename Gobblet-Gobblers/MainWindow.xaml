@@ -125,7 +125,7 @@
             <Label Content="nazwa" BorderBrush="black" FontSize="35px" HorizontalAlignment="Left" Margin="970,667,0,0" VerticalAlignment="Top" Style="{StaticResource LabelStyle}" Height="57" Width="122"/>
             <Label Content="kolor" BorderBrush="black" FontSize="35px" HorizontalAlignment="Left" Margin="1331,667,0,0" VerticalAlignment="Top" Style="{StaticResource LabelStyle}" Height="57" Width="122"/>
 
-            
+
             <ComboBox x:Name="ColorComboBox" Style="{StaticResource ComboBoxStyle}" Margin="334,729,1013,74" Background="White" SelectionChanged="ColorComboBox_SelectionChanged">
                 <ComboBoxItem Content="Czerwony" Background="Red"/>
                 <ComboBoxItem Content="Zielony" Background="Green"/>
@@ -144,33 +144,34 @@
             <Grid x:Name="Plansza" Width="650" Height="650" Margin="0,169,0,64" HorizontalAlignment="Center" Background="Transparent"/>
 
 
-            <Button x:Name="gracz1_przycisk1" Margin="117,594,1250,88" Background="Transparent" BorderBrush="Aqua" BorderThickness="10" Click="mieczGracz1_click">
+            <Button x:Name="gracz1_przycisk1" Margin="187,594,1180,88" Background="Transparent" BorderBrush="Aqua" BorderThickness="10" Click="mieczGracz1_click">
                 <Button.Content>
-                    <Image Source="pionki/miecz 3.png" Stretch="Uniform" Width="200" />
+                    <Image Source="/miecz 3.png" Stretch="Uniform" Width="200" />
                 </Button.Content>
             </Button>
 
-            <Button x:Name="gracz1_przycisk2" Click="mieczGracz1_click" Margin="134,390,1267,343" Background="Transparent" BorderBrush="Aqua" BorderThickness="10">
+            <Button x:Name="gracz1_przycisk2" Click="mieczGracz1_click" Margin="204,390,1197,343" Background="Transparent" BorderBrush="Aqua" BorderThickness="10">
                 <Button.Content>
                     <Image Source="pionki/miecz 2.png" Stretch="Uniform" Height="122" Width="165" />
                 </Button.Content>
             </Button>
 
-            <Button Click="mieczGracz1_click" x:Name="gracz1_przycisk3" Margin="154,215,1287,548" Background="Transparent" BorderBrush="Aqua" BorderThickness="10">
+
+            <Button Click="mieczGracz1_click" x:Name="gracz1_przycisk3" Margin="224,215,1217,548" Background="Transparent" BorderBrush="Aqua" BorderThickness="10">
                 <Image Source="/pionki/obraz 1.png" Stretch="Uniform" Height="110" Width="141" />
             </Button>
 
 
 
-            <Button Click="mieczGracz2_click" x:Name="gracz2_przycisk1" Margin="1292,215,149,548" Background="Transparent" BorderBrush="Aqua" BorderThickness="10">
+            <Button Click="mieczGracz2_click" x:Name="gracz2_przycisk1" Margin="1229,215,212,548" Background="Transparent" BorderBrush="Aqua" BorderThickness="10">
                 <Image Source="/pionki/obraz 1.png" Stretch="Uniform" Height="110" Width="141" RenderTransformOrigin="0.483,0.298" />
             </Button>
 
-            <Button Click="mieczGracz2_click"  x:Name="gracz2_przycisk2"  Margin="1272,390,129,343" Background="Transparent" BorderBrush="Aqua" BorderThickness="10">
+            <Button Click="mieczGracz2_click"  x:Name="gracz2_przycisk2"  Margin="1209,390,192,343" Background="Transparent" BorderBrush="Aqua" BorderThickness="10">
                 <Image Source="/pionki/miecz 2.png" Stretch="Uniform" Height="122" Width="165" />
             </Button>
 
-            <Button Click="mieczGracz2_click" x:Name="gracz2_przycisk3"  Margin="1255,594,112,88" Background="Transparent" BorderBrush="Aqua" BorderThickness="10">
+            <Button Click="mieczGracz2_click" x:Name="gracz2_przycisk3"  Margin="1192,594,175,88" Background="Transparent" BorderBrush="Aqua" BorderThickness="10">
                 <Image Source="/pionki/miecz 3.png" Stretch="Uniform" Width="200" />
             </Button>
 
@@ -185,6 +186,14 @@
                 </Label.Effect>
             </Label>
             <Label x:Name="rundaLabel" FontSize="50" HorizontalAlignment="Center" Margin="0,67,0,0" VerticalAlignment="Top" Height="97" Width="544" Background="Transparent" FontFamily="Segoe Print"/>
+            
+            <Label x:Name="pionki_maly_gracz1"  Foreground="Beige" FontSize="35" HorizontalAlignment="Left" Margin="99,239,0,0" VerticalAlignment="Top" Height="84" Width="120"/>
+            <Label x:Name="pionki_sredni_gracz1" Foreground="Beige" FontSize="45" HorizontalAlignment="Left" Margin="62,423,0,0" VerticalAlignment="Top" Height="84" Width="120"/>
+            <Label x:Name="pionki_duzy_gracz1" Foreground="Beige" FontSize="55" HorizontalAlignment="Left" Margin="35,653,0,0" VerticalAlignment="Top" Height="84" Width="147"/>
+
+            <Label x:Name="pionki_maly_gracz2" Foreground="Beige" FontSize="35" HorizontalAlignment="Left" Margin="1424,239,0,0" VerticalAlignment="Top" Height="84" Width="120"/>
+            <Label x:Name="pionki_sredni_gracz2" Foreground="Beige" FontSize="45" HorizontalAlignment="Left" Margin="1424,423,0,0" VerticalAlignment="Top" Height="84" Width="120"/>
+            <Label x:Name="pionki_duzy_gracz2" Foreground="Beige" FontSize="55" HorizontalAlignment="Left" Margin="1442,653,0,0" VerticalAlignment="Top" Height="84" Width="147"/>
         </Grid>
 
 
