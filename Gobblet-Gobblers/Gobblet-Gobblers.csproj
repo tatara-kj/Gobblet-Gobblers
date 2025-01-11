@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="miecz 2.png" />
     <None Remove="miecz 3.png" />
     <None Remove="pionki\miecz 2.png" />
     <None Remove="pionki\miecz 3.png" />
@@ -17,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="miecz 2.png" />
     <Resource Include="miecz 3.png" />
     <Resource Include="pionki\miecz 2.png" />
     <Resource Include="pionki\miecz 3.png" />
