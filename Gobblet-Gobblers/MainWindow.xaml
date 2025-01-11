@@ -87,20 +87,10 @@
                 <DropShadowEffect/>
             </Grid.Effect>
 
-            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center" Margin="40">
-                <Label Content="GOBBLET GOBBLERS" Style="{StaticResource LabelStyle}" FontSize="36" Margin="20"/>
-                <Label Content="sword edition" Style="{StaticResource LabelStyle}" FontSize="30" RenderTransformOrigin="0.5,0.5">
-                    <Label.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform/>
-                            <SkewTransform/>
-                            <RotateTransform Angle="3.036"/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </Label.RenderTransform>
-                </Label>
-                <Label Content="Wybierz rozmiar planszy (np. 3, 4, 5)" Style="{StaticResource LabelStyle}" Margin="20"/>
-                <TextBox x:Name="PoleRozmiar" Style="{StaticResource TextBoxStyle}"/>
+            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center">
+                <Label Content="Pożeracze the game" Style="{StaticResource LabelStyle}" FontSize="36"/>
+                <Label Content="Wybierz rozmiar planszy (np. 3, 4, 5)" Style="{StaticResource LabelStyle}"/>
+                <TextBox x:Name="PoleRozmiar" Style="{StaticResource TextBoxStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </StackPanel>
 
             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
