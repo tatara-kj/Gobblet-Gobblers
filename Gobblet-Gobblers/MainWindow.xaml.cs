@@ -27,7 +27,7 @@ namespace Pozeracze
             menu.Visibility = Visibility.Collapsed;
             UstawNazwyGraczy();
 
-          
+
 
             UstawKolorButtona(gracz1_przycisk1, ColorComboBox);
             UstawKolorButtona(gracz1_przycisk2, ColorComboBox);
@@ -37,7 +37,7 @@ namespace Pozeracze
             UstawKolorButtona(gracz2_przycisk2, ColorComboBox_Kopiuj);
             UstawKolorButtona(gracz2_przycisk3, ColorComboBox_Kopiuj);
 
-           
+
 
 
             AktualizujPionki();
@@ -53,22 +53,22 @@ namespace Pozeracze
             if (!int.TryParse(PoleRozmiar.Text, out rozmiarPlanszy) || rozmiarPlanszy < 3)
                 rozmiarPlanszy = 3;
 
-         
+
             int liczbaPol = rozmiarPlanszy * rozmiarPlanszy;
 
-            
-            int pionkiNaPole = (liczbaPol / 6) * 6; 
 
-           
-            pionkiMalyGracz1 = (int)Math.Round(pionkiNaPole * 3.0 / 6);
+            int pionkiNaPole = (liczbaPol / 6) * 6;
+
+
+            pionkiDuzyGracz1 = (int)Math.Round(pionkiNaPole * 3.0 / 6);
             pionkiSredniGracz1 = (int)Math.Round(pionkiNaPole * 2.0 / 6);
-            pionkiDuzyGracz1 = (int)Math.Round(pionkiNaPole * 1.0 / 6);
+            pionkiMalyGracz1 = (int)Math.Round(pionkiNaPole * 1.0 / 6);
 
             pionkiMalyGracz2 = (int)Math.Round(pionkiNaPole * 3.0 / 6);
             pionkiSredniGracz2 = (int)Math.Round(pionkiNaPole * 2.0 / 6);
             pionkiDuzyGracz2 = (int)Math.Round(pionkiNaPole * 1.0 / 6);
 
-            
+
             for (int i = 0; i < rozmiarPlanszy; i++)
             {
                 Plansza.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
@@ -99,7 +99,7 @@ namespace Pozeracze
                 }
             }
 
-          
+
             AktualizujPionki();
         }
 
@@ -180,7 +180,7 @@ namespace Pozeracze
 
         private void mieczGracz1_click(object sender, RoutedEventArgs e)
         {
-            if (czyRundaGracza1) 
+            if (czyRundaGracza1)
             {
                 czyWybrany = true;
                 gracz2_przycisk1.IsEnabled = false;
@@ -216,10 +216,10 @@ namespace Pozeracze
 
         private void AktualizujPionki()
         {
-          
-            pionki_maly_gracz1.Content = $"x {pionkiMalyGracz1}";
+
+            pionki_duzy_gracz1.Content = $"x {pionkiMalyGracz1}";
             pionki_sredni_gracz1.Content = $"x {pionkiSredniGracz1}";
-            pionki_duzy_gracz1.Content = $"x {pionkiDuzyGracz1}";
+            pionki_maly_gracz1.Content = $"x {pionkiDuzyGracz1}";
 
             pionki_maly_gracz2.Content = $"x {pionkiMalyGracz2}";
             pionki_sredni_gracz2.Content = $"x {pionkiSredniGracz2}";
@@ -235,7 +235,7 @@ namespace Pozeracze
                     pionkiDuzyGracz1--;
                     if (pionkiMalyGracz1 == 0)
                     {
-                        gracz1_przycisk1.IsEnabled = false; 
+                        gracz1_przycisk3.IsEnabled = false;
                     }
                 }
                 else if (rodzajPionka == "Sredni" && pionkiSredniGracz1 > 0)
@@ -243,7 +243,7 @@ namespace Pozeracze
                     pionkiSredniGracz1--;
                     if (pionkiSredniGracz1 == 0)
                     {
-                        gracz1_przycisk2.IsEnabled = false; 
+                        gracz1_przycisk2.IsEnabled = false;
                     }
                 }
                 else if (rodzajPionka == "Duzy" && pionkiDuzyGracz1 > 0)
@@ -251,7 +251,7 @@ namespace Pozeracze
                     pionkiMalyGracz1--;
                     if (pionkiDuzyGracz1 == 0)
                     {
-                        gracz1_przycisk3.IsEnabled = false; 
+                        gracz1_przycisk1.IsEnabled = false;
                     }
                 }
             }
@@ -288,7 +288,7 @@ namespace Pozeracze
 
         private void mieczGracz2_click(object sender, RoutedEventArgs e)
         {
-            if (!czyRundaGracza1) 
+            if (!czyRundaGracza1)
             {
                 czyWybrany = true;
                 gracz1_przycisk1.IsEnabled = false;
@@ -321,7 +321,7 @@ namespace Pozeracze
                 MessageBox.Show("To nie Twoja kolej, poczekaj na swoją rundę!");
             }
         }
-  
+
         private void PolePlanszy_Click(object sender, RoutedEventArgs e)
         {
             if (czyWybrany && wybranyObraz != null)
@@ -332,13 +332,13 @@ namespace Pozeracze
                 if (czyRundaGracza1)
                 {
                     pole.Background = kolorGracza1;
-                    if (wybranyPrzyciskGracz1 == gracz1_przycisk1)
+                    if (wybranyPrzyciskGracz1 == gracz1_przycisk3)
                         PostawPionek("Maly", 1);
                     else if (wybranyPrzyciskGracz1 == gracz1_przycisk2)
                         PostawPionek("Sredni", 1);
-                    else if (wybranyPrzyciskGracz1 == gracz1_przycisk3)
+                    else if (wybranyPrzyciskGracz1 == gracz1_przycisk1)
                         PostawPionek("Duzy", 1);
-                   
+
                 }
                 else
                 {
@@ -355,7 +355,7 @@ namespace Pozeracze
                 wybranyObraz = null;
 
                 czyRundaGracza1 = !czyRundaGracza1;
-                 UstawStanRundy();
+                UstawStanRundy();
 
             }
             else
@@ -391,40 +391,9 @@ namespace Pozeracze
                 rundaLabel.Content = "Runda gracza " + gracz1_Kopiuj1.Text;
             }
         }
-        private void gracz1_przycisk1_Click(object sender, RoutedEventArgs e)
-        {
-            PostawPionek("Maly", 1);
-        }
 
-   
-        private void gracz1_przycisk2_Click(object sender, RoutedEventArgs e)
-        {
-            PostawPionek("Sredni", 1);
-        }
-
-
-        private void gracz1_przycisk3_Click(object sender, RoutedEventArgs e)
-        {
-            PostawPionek("Duzy", 1);
-        }
-
-
-        private void gracz2_przycisk1_Click(object sender, RoutedEventArgs e)
-        {
-            PostawPionek("Maly", 2);
-        }
-
- 
-        private void gracz2_przycisk2_Click(object sender, RoutedEventArgs e)
-        {
-            PostawPionek("Sredni", 2);
-        }
-
-       
-        private void gracz2_przycisk3_Click(object sender, RoutedEventArgs e)
-        {
-            PostawPionek("Duzy", 2);
-        }
 
     }
 }
+
+//wersja dobra 11.01.24
