@@ -1,8 +1,10 @@
-﻿using System;
+using System;
 using System.Windows;
+using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
+using System.Runtime.Intrinsics.X86;
 
 namespace Pozeracze
 {
@@ -27,6 +29,9 @@ namespace Pozeracze
             menu.Visibility = Visibility.Collapsed;
             UstawNazwyGraczy();
 
+            gracz2_przycisk1.IsEnabled = false;
+            gracz2_przycisk2.IsEnabled = false;
+            gracz2_przycisk3.IsEnabled = false;
 
 
             UstawKolorButtona(gracz1_przycisk1, ColorComboBox);
@@ -42,6 +47,8 @@ namespace Pozeracze
 
             AktualizujPionki();
         }
+
+
 
         private void GenerujPlansze()
         {
@@ -108,18 +115,22 @@ namespace Pozeracze
 
         private void ColorComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            Brush nowyKolorGracza1 = Brushes.Black;
+            Brush nowyKolorGracza2 = Brushes.Black;
+
             if (sender == ColorComboBox)
             {
                 if (ColorComboBox.SelectedItem is ComboBoxItem wybranyElement)
                 {
                     string kolorNazwa = wybranyElement.Content.ToString();
-                    kolorGracza1 = kolorNazwa switch
+                    nowyKolorGracza1 = kolorNazwa switch
                     {
                         "Czerwony" => Brushes.Red,
                         "Zielony" => Brushes.Green,
                         "Niebieski" => Brushes.Blue,
                         _ => Brushes.Black
                     };
+                    kolorGracza1 = nowyKolorGracza1;
                 }
             }
             else if (sender == ColorComboBox_Kopiuj)
@@ -127,13 +138,28 @@ namespace Pozeracze
                 if (ColorComboBox_Kopiuj.SelectedItem is ComboBoxItem wybranyElement)
                 {
                     string kolorNazwa = wybranyElement.Content.ToString();
-                    kolorGracza2 = kolorNazwa switch
+                    nowyKolorGracza2 = kolorNazwa switch
                     {
                         "Czerwony" => Brushes.Red,
                         "Zielony" => Brushes.Green,
                         "Niebieski" => Brushes.Blue,
                         _ => Brushes.Black
                     };
+                    kolorGracza2 = nowyKolorGracza2;
+                }
+            }
+
+            if (kolorGracza1 == kolorGracza2)
+            {
+                MessageBox.Show("Kolory nie moga byc takie same, zmien drugi kolor !!!");
+
+                if (sender == ColorComboBox)
+                {
+                    ColorComboBox.SelectedItem = null;
+                }
+                else if (sender == ColorComboBox_Kopiuj)
+                {
+                    ColorComboBox_Kopiuj.SelectedItem = null;
                 }
             }
         }
@@ -147,15 +173,7 @@ namespace Pozeracze
             }
         }
 
-        private void UstawNazwyGraczy()
-        {
-            imie1.Content = gracz1.Text;
-            imie2.Content = gracz1_Kopiuj1.Text;
 
-            //kolorgraczy es
-
-
-        }
 
         private void UstawKolorButtona(Button przycisk, ComboBox comboBox)
         {
@@ -210,7 +228,7 @@ namespace Pozeracze
             }
             else
             {
-                MessageBox.Show("To nie Twoja kolej, poczekaj na swoją rundę!");
+                MessageBox.Show("To nie Twoja kolej KOLEGO");
             }
         }
 
@@ -318,7 +336,7 @@ namespace Pozeracze
             }
             else
             {
-                MessageBox.Show("To nie Twoja kolej, poczekaj na swoją rundę!");
+                MessageBox.Show("To nie Twoja kolej KOLEGO");
             }
         }
 
@@ -327,43 +345,114 @@ namespace Pozeracze
             if (czyWybrany && wybranyObraz != null)
             {
                 Label pole = sender as Label;
+
+               
+                if (!CzyMoznaPostawicPionek(pole))
+                {
+                    MessageBox.Show("NIE MOZNA TU POSAWIC ");
+                    return;
+                }
+
+              
                 pole.Content = new Image { Source = wybranyObraz, Stretch = Stretch.Uniform };
 
                 if (czyRundaGracza1)
                 {
                     pole.Background = kolorGracza1;
-                    if (wybranyPrzyciskGracz1 == gracz1_przycisk3)
-                        PostawPionek("Maly", 1);
-                    else if (wybranyPrzyciskGracz1 == gracz1_przycisk2)
-                        PostawPionek("Sredni", 1);
-                    else if (wybranyPrzyciskGracz1 == gracz1_przycisk1)
-                        PostawPionek("Duzy", 1);
 
+                    if (wybranyPrzyciskGracz1 == gracz1_przycisk1)
+                    {
+                        PostawPionek("Duzy", 1);
+                        pole.Tag = "Duzy"; 
+                    }
+                    else if (wybranyPrzyciskGracz1 == gracz1_przycisk2)
+                    {
+                        PostawPionek("Sredni", 1);
+                        pole.Tag = "Sredni"; 
+                    }
+                    else if (wybranyPrzyciskGracz1 == gracz1_przycisk3)
+                    {
+                        PostawPionek("Maly", 1);
+                        pole.Tag = "Maly";
+                    }
                 }
                 else
                 {
                     pole.Background = kolorGracza2;
-                    if (wybranyPrzyciskGracz1 == gracz2_przycisk1)
-                        PostawPionek("Maly", 2);
-                    else if (wybranyPrzyciskGracz1 == gracz2_przycisk2)
-                        PostawPionek("Sredni", 2);
-                    else if (wybranyPrzyciskGracz1 == gracz2_przycisk3)
+
+                    if (wybranyPrzyciskGracz1 == gracz2_przycisk3)
+                    {
                         PostawPionek("Duzy", 2);
+                        pole.Tag = "Duzy";
+                    }
+                    else if (wybranyPrzyciskGracz1 == gracz2_przycisk2)
+                    {
+                        PostawPionek("Sredni", 2);
+                        pole.Tag = "Sredni"; 
+                    }
+                    else if (wybranyPrzyciskGracz1 == gracz2_przycisk1)
+                    {
+                        PostawPionek("Maly", 2);
+                        pole.Tag = "Maly"; 
+                    }
                 }
 
+                
                 czyWybrany = false;
                 wybranyObraz = null;
-
                 czyRundaGracza1 = !czyRundaGracza1;
                 UstawStanRundy();
-
+                SprawdzWygrana();
             }
             else
             {
-                MessageBox.Show("Wybierz najpierw rozmiar miecza!");
+                MessageBox.Show("Wybierz najpierw rozmiar pionka!");
             }
         }
 
+
+        private bool CzyMoznaPostawicPionek(Label pole)
+        {
+          
+            if (pole.Tag == null)
+            {
+                return true;
+            }
+
+        
+            string obecnyPionek = pole.Tag.ToString();
+
+            if (wybranyPrzyciskGracz1 == gracz1_przycisk3 || wybranyPrzyciskGracz1 == gracz2_przycisk1)
+            {
+            
+                return false;
+            }
+            else if (wybranyPrzyciskGracz1 == gracz1_przycisk2 || wybranyPrzyciskGracz1 == gracz2_przycisk2)
+            {
+                
+                return obecnyPionek == "Maly";
+            }
+            else if (wybranyPrzyciskGracz1 == gracz1_przycisk1 || wybranyPrzyciskGracz1 == gracz2_przycisk3)
+            {
+               
+                return obecnyPionek == "Maly" || obecnyPionek == "Sredni";
+            }
+
+            return false;
+        }
+
+        private string gracz1Imie;
+        private string gracz2Imie;
+        private void UstawNazwyGraczy()
+        {
+            gracz1Imie = gracz1.Text;
+            gracz2Imie = gracz1_Kopiuj1.Text;
+
+            imie1.Content = gracz1Imie;
+            imie2.Content = gracz2Imie;
+
+           
+        }
         private void UstawStanRundy()
         {
             if (czyRundaGracza1)
@@ -377,6 +466,7 @@ namespace Pozeracze
                 gracz2_przycisk3.IsEnabled = false;
 
                 rundaLabel.Content = "Runda gracza " + gracz1.Text;
+                aktualnyGracz = gracz1.Text;
             }
             else
             {
@@ -389,9 +479,213 @@ namespace Pozeracze
                 gracz2_przycisk3.IsEnabled = pionkiDuzyGracz2 > 0;
 
                 rundaLabel.Content = "Runda gracza " + gracz1_Kopiuj1.Text;
+                aktualnyGracz = gracz1_Kopiuj1.Text;
             }
         }
 
+        private string aktualnyGracz;
+       
 
+        private bool CzyRzadJednegoKoloru(int numerWiersza)
+        {
+            Brush kolorPierwszegoPola = null;
+
+            for (int kolumna = 0; kolumna < rozmiarPlanszy; kolumna++)
+            {
+                Label pole = PobierzPole(numerWiersza, kolumna);
+                if (pole == null || pole.Background == Brushes.LightSkyBlue) 
+                    return false;
+
+                if (kolorPierwszegoPola == null)
+                {
+                    kolorPierwszegoPola = pole.Background;
+                }
+                else if (pole.Background != kolorPierwszegoPola)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private bool CzyKolumnaJednegoKoloru(int numerKolumny)
+        {
+            Brush kolorPierwszegoPola = null;
+
+            for (int wiersz = 0; wiersz < rozmiarPlanszy; wiersz++)
+            {
+                Label pole = PobierzPole(wiersz, numerKolumny);
+                if (pole == null || pole.Background == Brushes.LightSkyBlue)
+                    return false;
+
+                if (kolorPierwszegoPola == null)
+                {
+                    kolorPierwszegoPola = pole.Background;
+                }
+                else if (pole.Background != kolorPierwszegoPola)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private bool CzyPrzekatnaJednegoKoloru(bool glowna)
+        {
+            Brush kolorPierwszegoPola = null;
+
+            for (int i = 0; i < rozmiarPlanszy; i++)
+            {
+                int wiersz = i;
+                int kolumna = glowna ? i : rozmiarPlanszy - 1 - i;
+
+                Label pole = PobierzPole(wiersz, kolumna);
+                if (pole == null || pole.Background == Brushes.LightSkyBlue) 
+                    return false;
+
+                if (kolorPierwszegoPola == null)
+                {
+                    kolorPierwszegoPola = pole.Background;
+                }
+                else if (pole.Background != kolorPierwszegoPola)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private Label PobierzPole(int wiersz, int kolumna)
+        {
+            return Plansza.Children
+                // Zbiera wszystkie elementy potomne planszy jako UIElement.
+                .Cast<UIElement>()
+                // Szuka pierwszego elementu, który znajduje się w odpowiednim wierszu i kolumnie.
+                .FirstOrDefault(x => Grid.GetRow(x) == wiersz && Grid.GetColumn(x) == kolumna)
+                // Zwraca znaleziony element jako Label, lub null, jeśli taki element nie istnieje.
+                as Label;
+        }
+
+
+        public void SprawdzWygrana()
+        {
+            for (int i = 0; i < rozmiarPlanszy; i++)
+            {
+               
+                if (CzyRzadJednegoKoloru(i))
+                {
+                    PokazOpcjePoWygranej();
+                    return;
+                }
+
+              
+                if (CzyKolumnaJednegoKoloru(i))
+                {
+                    PokazOpcjePoWygranej();
+                    return;
+                }
+            }
+
+           
+            if (CzyPrzekatnaJednegoKoloru(true))
+            {
+                PokazOpcjePoWygranej();
+                return;
+            }
+
+            if (CzyPrzekatnaJednegoKoloru(false))
+            {
+                PokazOpcjePoWygranej();
+                return;
+            }
+        }
+
+        private void PokazOpcjePoWygranej()
+        {
+            var wynik = MessageBox.Show($"{aktualnyGracz} wygrał! Co chcesz zrobić? tak - zagraj ponownie, nie - wyjdz do menu, anuluj - zamkni",
+                                         "Koniec gry",
+                                         MessageBoxButton.YesNoCancel,
+                                         MessageBoxImage.Information);
+
+            if (wynik == MessageBoxResult.Yes)
+            {
+                ZagrajPonownie();
+            }
+            else if (wynik == MessageBoxResult.No)
+            {
+                WrocDoMenu();
+            }
+            else if (wynik == MessageBoxResult.Cancel)
+            {
+                Wyjdz();
+            }
+        }
+
+        private void ZagrajPonownie()
+        {
+            
+            ResetujPlansze();
+           
+            GenerujPlansze();
+            czyRundaGracza1 = true;
+            gracz1_przycisk1.IsEnabled = true;
+            gracz1_przycisk2.IsEnabled = true;
+            gracz1_przycisk3.IsEnabled = true;
+           
+            gracz2_przycisk1.IsEnabled = false;
+            gracz2_przycisk2.IsEnabled = false;
+            gracz2_przycisk3.IsEnabled = false;
+
+           
+
+        }
+
+        private void WrocDoMenu()
+        {
+           
+            ResetujGraczy();
+            menu.Visibility = Visibility.Visible;
+            ZagrajPonownie();
+          
+        }
+
+        private void Wyjdz()
+        {
+         
+            Application.Current.Shutdown();
+        }
+
+        private void ResetujPlansze()
+        {
+          
+            foreach (var child in Plansza.Children)
+            {
+                if (child is Label)
+                {
+                    (child as Label).Content = "";
+                }
+            }
+        }
+
+        private void ResetujGraczy()
+        {
+          
+            gracz1.Text = "";
+            gracz1_Kopiuj1.Text = "";
+           
+
+            kolorGracza1 = null;
+            kolorGracza2 = null;
+        }
+
+       
+
+            private void powrot_Click(object sender, RoutedEventArgs e)
+        {
+            WrocDoMenu();
+        }
     }
 }
