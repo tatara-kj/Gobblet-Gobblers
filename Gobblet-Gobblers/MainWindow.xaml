@@ -1,4 +1,4 @@
-﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:av="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -138,13 +138,13 @@
                 <ComboBoxItem Content="Niebieski" Background="Blue"/>
 
             </ComboBox>
-            <Image HorizontalAlignment="Left" Source="pionki/miecz 2.png" Height="74" Margin="865,115,0,0" VerticalAlignment="Top" Width="78" />
+            <Image HorizontalAlignment="Left" Height="74" Margin="865,115,0,0" VerticalAlignment="Top" Width="78" Source="/miecz 2.png"/>
         </Grid>
         <Grid Width="1599" x:Name="gra" Visibility="Visible">
             <Grid x:Name="Plansza" Width="650" Height="650" Margin="0,169,0,64" HorizontalAlignment="Center" Background="Transparent"/>
 
-
-            <Button x:Name="gracz1_przycisk1" Margin="117,594,1250,88" Background="Transparent" BorderBrush="Aqua" BorderThickness="10" Click="mieczGracz1_click">
+       
+                <Button x:Name="gracz1_przycisk1" Margin="117,594,1250,88" Background="Transparent" BorderBrush="Aqua" BorderThickness="10" Click="mieczGracz1_click">
                 <Button.Content>
                     <Image Source="pionki/miecz 3.png" Stretch="Uniform" Width="200" />
                 </Button.Content>
@@ -193,7 +193,7 @@
             <Label x:Name="pionki_maly_gracz2" Foreground="Beige" FontSize="35" HorizontalAlignment="Left" Margin="1469,233,0,0" VerticalAlignment="Top" Height="84" Width="120"/>
             <Label x:Name="pionki_sredni_gracz2" Foreground="Beige" FontSize="45" HorizontalAlignment="Left" Margin="1479,410,0,0" VerticalAlignment="Top" Height="84" Width="120"/>
             <Label x:Name="pionki_duzy_gracz2" Foreground="Beige" FontSize="55" HorizontalAlignment="Left" Margin="1509,653,0,0" VerticalAlignment="Top" Height="84" Width="147"/>
-            <Button Content="powrót"  Click="Button_Click" FontSize="30" Foreground="Beige" RenderTransformOrigin="0.485,1.18" Background="#FF0986E6" Margin="10,0,1459,810">
+            <Button Click="powrot_Click" Content="POWRÓT" FontSize="30" Foreground="Beige" RenderTransformOrigin="0.485,1.18" Background="Transparent" Margin="20,10,1380,816" >
                 <Button.BorderBrush>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="Black"/>
